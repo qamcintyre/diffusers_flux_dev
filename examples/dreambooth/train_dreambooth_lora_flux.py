@@ -186,6 +186,9 @@ def log_validation(
     autocast_ctx = nullcontext()
 
     with autocast_ctx:
+        # Add this before running the pipeline
+        pipeline.vae.to(accelerator.device, dtype=torch_dtype)
+        
         images = [pipeline(**pipeline_args, generator=generator).images[0] for _ in range(args.num_validation_images)]
 
     for tracker in accelerator.trackers:
@@ -1684,7 +1687,12 @@ def main(args):
                 )
 
                 # handle guidance
-                if transformer.config.guidance_embeds:
+                if hasattr(transformer, 'module'):
+                    config = transformer.module.config
+                else:
+                    config = transformer.config
+
+                if hasattr(config, 'guidance_embeds') and config.guidance_embeds:
                     guidance = torch.tensor([args.guidance_scale], device=accelerator.device)
                     guidance = guidance.expand(model_input.shape[0])
                 else:
