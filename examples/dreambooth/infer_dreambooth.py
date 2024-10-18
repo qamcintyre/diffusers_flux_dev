@@ -30,7 +30,7 @@ from peft import PeftModel
 import os
 
 # Load the base model
-model_id = "black-forest-labs/FLUX.1-dev"
+model_id = "black-forest-labs/FLUX.1-schnell"
 pipe = FluxPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
 
 # Move the pipeline to GPU if available
