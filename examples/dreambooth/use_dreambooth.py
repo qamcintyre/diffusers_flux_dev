@@ -16,7 +16,7 @@ pipe.load_lora_weights(lora_model_path)
 # pipe = FluxPipeline.from_pretrained("path/to/your/trained-flux", torch_dtype=torch.float16)
 
 # Set up the prompt
-prompt = "A photo of gjg quinn with a sword"
+prompt = "A photo of gjg quinn"
 
 # Generate the image
 image = pipe(prompt=prompt, guidance_scale=7.5).images[0]

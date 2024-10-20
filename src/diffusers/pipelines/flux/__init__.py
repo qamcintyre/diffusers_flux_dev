@@ -28,6 +28,7 @@ else:
     _import_structure["pipeline_flux_controlnet_inpainting"] = ["FluxControlNetInpaintPipeline"]
     _import_structure["pipeline_flux_img2img"] = ["FluxImg2ImgPipeline"]
     _import_structure["pipeline_flux_inpaint"] = ["FluxInpaintPipeline"]
+    _import_structure["pipeline_flux_multiple_lora"] = ["FluxPipelineMultipleLora"]
 if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
     try:
         if not (is_transformers_available() and is_torch_available()):
@@ -41,6 +42,7 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
         from .pipeline_flux_controlnet_inpainting import FluxControlNetInpaintPipeline
         from .pipeline_flux_img2img import FluxImg2ImgPipeline
         from .pipeline_flux_inpaint import FluxInpaintPipeline
+        from .pipeline_flux_multiple_lora import FluxPipelineMultipleLora
 else:
     import sys
 
